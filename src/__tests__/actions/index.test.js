@@ -50,6 +50,12 @@ describe('actions', ()=>{
     expect(a.viewDetails(10)).toEqual({
       type: d.DETAILS,
       currentDrinkId: 10
-    })
-  })
+    });
+  });
+
+  it('should be able to create a create action', ()=>{
+    expect(a.create()).toEqual({
+      type: d.CREATE
+    });
+  });
 })

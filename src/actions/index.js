@@ -41,3 +41,9 @@ export const viewDetails = (currentDrinkId) => {
     currentDrinkId
   })
 }
+
+export const create = () => {
+  return ({
+    type: d.CREATE
+  })
+}
