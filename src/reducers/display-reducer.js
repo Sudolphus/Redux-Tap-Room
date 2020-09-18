@@ -21,6 +21,12 @@ export default (state = {currentPage: d.INDEX, currentDrinkId: null, showDeleteM
         currentDrinkId: null,
         showDeleteModal: false
       }
+    case d.EDIT:
+      return {
+        currentPage: d.EDIT,
+        currentDrinkId,
+        showDeleteModal: false
+      }
     default:
       return state;
   }
