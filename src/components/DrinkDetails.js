@@ -14,7 +14,10 @@ function DrinkDetails(props) {
   const { drink, dispatch, showDeleteModal } = props;
   const { name, brand, price, alcoholContent, quantity, id } = drink;
   const handleToggle = () => dispatch(a.toggleModal());
-
+  const handleDelete = () => {
+    dispatch(a.deleteDrink(id));
+    dispatch(a.viewIndex());
+  }
   return (
     <React.Fragment>
       <Row>
@@ -41,7 +44,7 @@ function DrinkDetails(props) {
         <Modal.Body>Are you sure you want to delete {name}?</Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' type='button' onClick={handleToggle}>&times;</Button>
-          <Button variant='primary' type='button' onClick={()=>dispatch(a.deleteDrink(id))}>&#10004;</Button>
+          <Button variant='primary' type='button' onClick={handleDelete}>&#10004;</Button>
         </Modal.Footer>
       </Modal>
     </React.Fragment>
