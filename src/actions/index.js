@@ -34,3 +34,10 @@ export const viewIndex = () => {
     type: d.INDEX
   })
 }
+
+export const viewDetails = (currentDrinkId) => {
+  return ({
+    type: d.DETAILS,
+    currentDrinkId
+  })
+}

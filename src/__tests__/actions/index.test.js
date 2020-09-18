@@ -45,4 +45,11 @@ describe('actions', ()=>{
       type: d.INDEX
     });
   });
+
+  it('should be able to create a view details action', ()=>{
+    expect(a.viewDetails(10)).toEqual({
+      type: d.DETAILS,
+      currentDrinkId: 10
+    })
+  })
 })
