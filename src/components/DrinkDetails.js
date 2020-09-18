@@ -30,7 +30,7 @@ function DrinkDetails(props) {
       </Row>
       <ButtonGroup vertical size='lg'>
         <Button variant='secondary' type='button' block onClick={()=>onLinkClick('index')}>Back To Index</Button>
-        <Button variant='warning' type='button' block onClick={()=>onLinkClick('edit', drink)}>Edit Drink</Button>
+        <Button variant='warning' type='button' block onClick={()=>onLinkClick('edit', drink.id)}>Edit Drink</Button>
         <Button variant='danger' type='button' block onClick={handleToggle}>Delete Drink</Button>
       </ButtonGroup>
       
