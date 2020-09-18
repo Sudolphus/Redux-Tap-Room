@@ -20,6 +20,24 @@ describe('drinkListReducer', ()=>{
     id: 2
   };
 
+  const testState = {
+    1: {
+      name: 'Test Ale',
+      brand: 'Test Brand',
+      price: 3.00,
+      alcoholContent: 5.5,
+      quantity: 124,
+      id: 1
+    },
+    2: {
+      name: 'Test Ale 2',
+      brand: 'Test Brand 2',
+      price: 4.00,
+      alcoholContent: 6.5,
+      quantity: 124,
+      id: 2
+    }
+  }
   it('should do nothing if given a blank reducer', ()=>{
     expect(drinkListReducer({}, {type: null})).toEqual({});
   });
@@ -77,6 +95,23 @@ describe('drinkListReducer', ()=>{
         alcoholContent2,
         quantity2,
         id: 1
+      }
+    });
+  });
+
+  it('should be able to delete a drink', ()=>{
+    const action = {
+      type: c.DELETE_DRINK,
+      id: 1
+    };
+    expect(drinkListReducer(testState, action)).toEqual({
+      2: {
+        name: 'Test Ale 2',
+        brand: 'Test Brand 2',
+        price: 4.00,
+        alcoholContent: 6.5,
+        quantity: 124,
+        id: 2
       }
     })
   })
