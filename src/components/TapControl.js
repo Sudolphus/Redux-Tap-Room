@@ -12,7 +12,8 @@ import Navigator from './Navigator';
 
 function TapControl(props) {
   const { dispatch } = props;
-  
+  const { currentPage, currentDrinkId } = props.display;
+
   const handleLinks = (page, drinkId = null) => {
     if (page === d.INDEX) {
       dispatch(a.viewIndex());
@@ -30,17 +31,11 @@ function TapControl(props) {
     handleLinks(d.INDEX);
   }
 
-  const handleDeleteDrink = (deleteDrink) => {
-    dispatch(a.deleteDrink(deleteDrink.id));
-    handleLinks(d.INDEX);
-  }
-
   const handleChangeDrinksRemaining = (drink, amount) => {
     dispatch(a.changeQuantity(amount, drink.id));
     handleLinks(d.INDEX);
   }
 
-  const { currentPage, currentDrinkId } = props.display;
   let pageToDisplay;
   switch(currentPage) {
     case d.INDEX:
@@ -50,10 +45,7 @@ function TapControl(props) {
         drinkList={Object.values(props.drinkList)} /> 
       break;
     case d.DETAILS:
-      pageToDisplay = <DrinkDetails
-        onLinkClick = {handleLinks}
-        onDelete = {handleDeleteDrink}
-        drink = {props.drinkList[`${currentDrinkId}`]} />
+      pageToDisplay = <DrinkDetails />
       break;
     case d.CREATE:
       pageToDisplay = <AddDrink

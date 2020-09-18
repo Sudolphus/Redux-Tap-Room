@@ -11,8 +11,8 @@ import Image from 'react-bootstrap/Image';
 import stout from './img/stout.jpeg';
 
 function DrinkDetails(props) {
-  const { onLinkClick, onDelete, drink, dispatch, showDeleteModal } = props;
-  const { name, brand, price, alcoholContent, quantity } = drink;
+  const { drink, dispatch, showDeleteModal } = props;
+  const { name, brand, price, alcoholContent, quantity, id } = drink;
   const handleToggle = () => dispatch(a.toggleModal());
 
   return (
@@ -29,8 +29,8 @@ function DrinkDetails(props) {
         </Col>
       </Row>
       <ButtonGroup vertical size='lg'>
-        <Button variant='secondary' type='button' block onClick={()=>onLinkClick('index')}>Back To Index</Button>
-        <Button variant='warning' type='button' block onClick={()=>onLinkClick('edit', drink.id)}>Edit Drink</Button>
+        <Button variant='secondary' type='button' block onClick={()=>dispatch(a.viewIndex())}>Back To Index</Button>
+        <Button variant='warning' type='button' block onClick={()=>dispatch(a.edit(id))}>Edit Drink</Button>
         <Button variant='danger' type='button' block onClick={handleToggle}>Delete Drink</Button>
       </ButtonGroup>
       
@@ -41,7 +41,7 @@ function DrinkDetails(props) {
         <Modal.Body>Are you sure you want to delete {name}?</Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' type='button' onClick={handleToggle}>&times;</Button>
-          <Button variant='primary' type='button' onClick={()=>onDelete(drink)}>&#10004;</Button>
+          <Button variant='primary' type='button' onClick={()=>dispatch(a.deleteDrink(id))}>&#10004;</Button>
         </Modal.Footer>
       </Modal>
     </React.Fragment>
@@ -49,14 +49,15 @@ function DrinkDetails(props) {
 }
 
 DrinkDetails.propTypes = {
-  onLinkClick: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  drink: PropTypes.object.isRequired,
-  showDeleteModal: PropTypes.bool.isRequired
+  drink: PropTypes.object,
+  showDeleteModal: PropTypes.bool
 }
 
 const mapStateToProps = (state) => {
+  const { currentDrinkId } = state.display;
+  const drink = state['drinkList'][currentDrinkId];
   return ({
+    drink,
     showDeleteModal: state.display.showDeleteModal
   })
 }
