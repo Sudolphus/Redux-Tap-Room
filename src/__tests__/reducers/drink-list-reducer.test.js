@@ -167,4 +167,30 @@ describe('drinkListReducer', ()=>{
       }
     });
   });
+
+  it('should not be able to reduce drinks remaining to below zero', ()=>{
+    const action = {
+      type: c.CHANGE_QUANTITY,
+      amount: -300,
+      id: 1
+    };
+    expect(drinkListReducer(testState, action)).toEqual({
+      1: {
+        name: 'Test Ale',
+        brand: 'Test Brand',
+        price: 3.00,
+        alcoholContent: 5.5,
+        quantity: 0,
+        id: 1
+      },
+      2: {
+        name: 'Test Ale 2',
+        brand: 'Test Brand 2',
+        price: 4.00,
+        alcoholContent: 6.5,
+        quantity: 124,
+        id: 2
+      }
+    });
+  });
 });
