@@ -36,6 +36,18 @@ describe('displayReducer', ()=>{
       currentPage: d.CREATE,
       currentDrinkId: null,
       showDeleteModal: false
+    });
+  });
+
+  it('should be able to redirect to edit for a product', ()=>{
+    const action = {
+      type: d.EDIT,
+      currentDrinkId: 3
+    };
+    expect(displayReducer(undefined, action)).toEqual({
+      currentPage: d.EDIT,
+      currentDrinkId: 3,
+      showDeleteModal: false
     })
   })
 })
