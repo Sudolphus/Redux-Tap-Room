@@ -1,5 +1,6 @@
 import * as a from './../../actions/index';
 import * as c from './../../actions/ActionTypes';
+import * as d from './../../components/DisplayTypes';
 
 describe('actions', ()=>{
   const testDrink = {
@@ -36,6 +37,12 @@ describe('actions', ()=>{
       type: c.CHANGE_QUANTITY,
       amount: 13,
       id: 1
+    });
+  });
+
+  it('should be able to create a view index action', ()=>{
+    expect(a.viewIndex()).toEqual({
+      type: d.INDEX
     });
   });
 })
