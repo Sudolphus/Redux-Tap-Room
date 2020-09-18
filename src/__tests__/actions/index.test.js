@@ -65,4 +65,10 @@ describe('actions', ()=>{
       currentDrinkId: 3
     });
   });
+
+  it('should be able to create a toggle modal action', ()=>{
+    expect(a.toggleModal()).toEqual({
+      type: d.TOGGLE_MODAL
+    });
+  });
 })

@@ -54,3 +54,9 @@ export const edit = (currentDrinkId) => {
     currentDrinkId
   })
 }
+
+export const toggleModal = () => {
+  return ({
+    type: d.TOGGLE_MODAL
+  })
+}
