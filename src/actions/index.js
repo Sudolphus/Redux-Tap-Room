@@ -47,3 +47,10 @@ export const create = () => {
     type: d.CREATE
   })
 }
+
+export const edit = (currentDrinkId) => {
+  return ({
+    type: d.EDIT,
+    currentDrinkId
+  })
+}

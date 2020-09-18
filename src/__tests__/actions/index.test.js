@@ -58,4 +58,11 @@ describe('actions', ()=>{
       type: d.CREATE
     });
   });
+
+  it('should be able to create an edit action', ()=>{
+    expect(a.edit(3)).toEqual({
+      type: d.EDIT,
+      currentDrinkId: 3
+    });
+  });
 })
