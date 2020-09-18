@@ -19,3 +19,11 @@ export const deleteDrink = (id) => {
     id
   });
 };
+
+export const changeQuantity = (amount, id) => {
+  return ({
+    type: c.CHANGE_QUANTITY,
+    amount,
+    id
+  })
+}
