@@ -28,6 +28,14 @@ describe('actions', ()=>{
     expect(a.deleteDrink(1)).toEqual({
       type: c.DELETE_DRINK,
       id: 1
-    })
-  })
+    });
+  });
+
+  it('should be able to create a change quantity action', ()=>{
+    expect(a.changeQuantity(13, 1)).toEqual({
+      type: c.CHANGE_QUANTITY,
+      amount: 13,
+      id: 1
+    });
+  });
 })
