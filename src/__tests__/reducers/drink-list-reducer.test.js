@@ -115,4 +115,30 @@ describe('drinkListReducer', ()=>{
       }
     })
   })
-})
+
+  it('should be able to increase the number of drinks remaining', ()=>{
+    const action = {
+      type: c.CHANGE_QUANTITY,
+      amount: 1,
+      id: 1
+    }
+    expect(drinkListReducer(testState, action)).toEqual({
+      1: {
+        name: 'Test Ale',
+        brand: 'Test Brand',
+        price: 3.00,
+        alcoholContent: 5.5,
+        quantity: 125,
+        id: 1
+      },
+      2: {
+        name: 'Test Ale 2',
+        brand: 'Test Brand 2',
+        price: 4.00,
+        alcoholContent: 6.5,
+        quantity: 124,
+        id: 2
+      }
+    });
+  });
+});
