@@ -13,17 +13,19 @@ import Navigator from './Navigator';
 class TapControl extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentPage: 'index',
-      currentDrink: null
-    }
   }
 
-  handleLinks = (page, drink = null) => {
-    this.setState({
-      currentPage: page,
-      currentDrink: drink
-    });
+  handleLinks = (page, drinkId = null) => {
+    const { dispatch } = this.props;
+    if (page === d.INDEX) {
+      dispatch(a.viewIndex());
+    } else if (page === d.DETAILS) {
+      dispatch(a.viewDetails(drinkId));
+    } else if (page === d.CREATE) {
+      dispatch(a.create());
+    } else if (page === d.EDIT) {
+      dispatch(a.edit(drinkId));
+    }
   }
 
   handleAddingDrink = (newDrink) => {
@@ -45,19 +47,20 @@ class TapControl extends React.Component {
   }
 
   render() {
+    const { currentPage, currentDrinkId } = this.props.display;
     let pageToDisplay;
-    switch(this.state.currentPage) {
+    switch(currentPage) {
       case d.INDEX:
         pageToDisplay = <DrinkList
-        onLinkClick={this.handleLinks}
-        onChangingQuantity = {this.handleChangeDrinksRemaining}
-        drinkList={this.props.drinkList} /> 
+          onLinkClick={this.handleLinks}
+          onChangingQuantity = {this.handleChangeDrinksRemaining}
+          drinkList={Object.values(this.props.drinkList)} /> 
         break;
       case d.DETAILS:
         pageToDisplay = <DrinkDetails
           onLinkClick = {this.handleLinks}
           onDelete = {this.handleDeleteDrink}
-          drink = {this.state.currentDrink} />
+          drink = {this.props.drinkList[currentDrinkId]} />
         break;
       case d.CREATE:
         pageToDisplay = <AddDrink
@@ -68,7 +71,7 @@ class TapControl extends React.Component {
         pageToDisplay = <EditDrink
           onLinkClick = {this.handleLinks}
           onEditDrink = {this.handleAddingDrink}
-          drink = {this.state.currentDrink} />
+          drink = {this.props.drinkList[currentDrinkId]} />
         break;
       default:
         pageToDisplay = <ErrorPage
@@ -86,12 +89,14 @@ class TapControl extends React.Component {
 }
 
 TapControl.propTypes = {
-  drinkList: PropTypes.array
+  drinkList: PropTypes.object,
+  display: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
   return ({
-    drinkList: Object.values(state['drinkList'])
+    drinkList: state['drinkList'],
+    display: state['display']
   })
 }
 
