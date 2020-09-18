@@ -12,6 +12,13 @@ describe('displayReducer', ()=>{
     expect(displayReducer(undefined, d.INDEX)).toEqual({
       currentPage: d.INDEX,
       currentDrinkId: null
+    });
+  });
+
+  it('should be able to redirect to details', ()=>{
+    expect(displayReducer(undefined, d.DETAILS, 1)).toEqual({
+      currentPage: d.DETAILS,
+      currentDrinkId: 1
     })
   })
 })
