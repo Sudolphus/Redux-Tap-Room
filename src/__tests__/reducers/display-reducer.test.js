@@ -11,14 +11,20 @@ describe('displayReducer', ()=>{
   it('should be able to redirect to index', ()=>{
     expect(displayReducer(undefined, d.INDEX)).toEqual({
       currentPage: d.INDEX,
-      currentDrinkId: null
+      currentDrinkId: null,
+      showDeleteModal: false
     });
   });
 
   it('should be able to redirect to details', ()=>{
-    expect(displayReducer(undefined, d.DETAILS, 1)).toEqual({
-      currentPage: d.DETAILS,
+    const action = {
+      type: d.DETAILS,
       currentDrinkId: 1
+    }
+    expect(displayReducer(undefined, action)).toEqual({
+      currentPage: d.DETAILS,
+      currentDrinkId: 1,
+      showDeleteModal: false
     })
   })
 })

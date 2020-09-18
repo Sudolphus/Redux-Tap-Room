@@ -1,12 +1,19 @@
 import * as d from './../components/DisplayTypes';
 
-export default (state = {currentPage: d.INDEX, currentDrinkId: null}, action) => {
-  const {type} = action;
+export default (state = {currentPage: d.INDEX, currentDrinkId: null, showDeleteModal: false}, action) => {
+  const { type, currentDrinkId } = action;
   switch (type) {
     case d.INDEX:
       return {
         currentPage: d.INDEX,
-        currentDrinkId: null
+        currentDrinkId: null,
+        showDeleteModal: false
+      }
+    case d.DETAILS:
+      return {
+        currentPage: d.DETAILS,
+        currentDrinkId,
+        showDeleteModal: false
       }
     default:
       return state;
