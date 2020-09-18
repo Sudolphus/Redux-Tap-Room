@@ -11,7 +11,7 @@ describe('actions', ()=>{
     id: 1
   };
   const { name, brand, price, alcoholContent, quantity, id } = testDrink;
-  
+
   it('should be able to create an add drink action', ()=>{
     expect(a.addDrink(testDrink)).toEqual({
       type: c.ADD_DRINK,
@@ -21,6 +21,13 @@ describe('actions', ()=>{
       alcoholContent,
       quantity,
       id
+    });
+  });
+
+  it('should be able to create a delete drink action', ()=>{
+    expect(a.deleteDrink(1)).toEqual({
+      type: c.DELETE_DRINK,
+      id: 1
     })
   })
 })
