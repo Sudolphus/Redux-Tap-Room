@@ -13,7 +13,11 @@ export default (state = {}, action) => {
           quantity,
           id
         }
-      })
+      });
+    case c.DELETE_DRINK:
+      const newState = { ...state };
+      delete newState[id];
+      return newState;
     default:
       return state;
   }
