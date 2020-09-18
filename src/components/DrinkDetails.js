@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -29,9 +30,9 @@ function DrinkDetails(props) {
         </Col>
       </Row>
       <ButtonGroup vertical size='lg'>
-        <Button variant='secondary' type='button' size='lg' block onClick={()=>onLinkClick('index')}>Back To Index</Button>
-        <Button variant='warning' type='button' size='lg' block onClick={()=>onLinkClick('edit', drink)}>Edit Drink</Button>
-        <Button variant='danger' type='button' size='lg' block onClick={handleShow}>Delete Drink</Button>
+        <Button variant='secondary' type='button' block onClick={()=>onLinkClick('index')}>Back To Index</Button>
+        <Button variant='warning' type='button' block onClick={()=>onLinkClick('edit', drink)}>Edit Drink</Button>
+        <Button variant='danger' type='button' block onClick={handleShow}>Delete Drink</Button>
       </ButtonGroup>
       
       <Modal show={show} onHide={handleClose}>
@@ -51,7 +52,14 @@ function DrinkDetails(props) {
 DrinkDetails.propTypes = {
   onLinkClick: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  drink: PropTypes.object.isRequired
+  drink: PropTypes.object.isRequired,
+  showDeleteModal: PropTypes.bool.isRequired
 }
 
-export default DrinkDetails;
+const mapStateToProps = (state) => {
+  return ({
+    showDeleteModal: state.display.showDeleteModal
+  })
+}
+
+export default connect(mapStateToProps)(DrinkDetails);

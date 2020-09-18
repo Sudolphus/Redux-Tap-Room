@@ -60,7 +60,7 @@ class TapControl extends React.Component {
         pageToDisplay = <DrinkDetails
           onLinkClick = {this.handleLinks}
           onDelete = {this.handleDeleteDrink}
-          drink = {this.props.drinkList[currentDrinkId]} />
+          drink = {this.props.drinkList[`${currentDrinkId}`]} />
         break;
       case d.CREATE:
         pageToDisplay = <AddDrink

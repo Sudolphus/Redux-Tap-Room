@@ -24,7 +24,7 @@ function DrinkForm(props) {
     defaultPrice = originalDrink.price;
     defaultContent = originalDrink.alcoholContent;
     defaultQuantity = originalDrink.quantity;
-    returnButton = <Button variant='info' type='button' size='lg' block onClick={()=>onLinkClick('details', originalDrink)}>Back To Drink</Button>
+    returnButton = <Button variant='info' type='button' size='lg' block onClick={()=>onLinkClick('details', originalDrink.id)}>Back To Drink</Button>
   }
 
   return (

@@ -34,7 +34,7 @@ function DrinkListCard(props) {
   return (
     <Card className="text-center">
       <Card.Body>
-        <Card.Title onClick={()=>onLinkClick('details', drink)}>{drink.name}</Card.Title>
+        <Card.Title onClick={()=>onLinkClick('details', drink.id)}>{drink.name}</Card.Title>
         <Card.Subtitle className={priceColor}>${drink.price}</Card.Subtitle>
         {quantity}
       </Card.Body>
