@@ -15,6 +15,12 @@ export default (state = {currentPage: d.INDEX, currentDrinkId: null, showDeleteM
         currentDrinkId,
         showDeleteModal: false
       }
+    case d.CREATE:
+      return {
+        currentPage: d.CREATE,
+        currentDrinkId: null,
+        showDeleteModal: false
+      }
     default:
       return state;
   }
