@@ -27,6 +27,8 @@ export default (state = {currentPage: d.INDEX, currentDrinkId: null, showDeleteM
         currentDrinkId,
         showDeleteModal: false
       }
+    case d.TOGGLE_MODAL:
+      return { ...state, showDeleteModal: !state.showDeleteModal }
     default:
       return state;
   }

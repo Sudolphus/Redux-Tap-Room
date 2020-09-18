@@ -50,4 +50,22 @@ describe('displayReducer', ()=>{
       showDeleteModal: false
     })
   })
+
+  it('should be able to toggle the delete modal', ()=>{
+    const action = {
+      type: d.TOGGLE_MODAL
+    }
+    const testState = {
+      currentPage: d.DETAILS,
+      currentDrinkId: 3,
+      showDeleteModal: false
+    }
+    const testState2 = {
+      currentPage: d.DETAILS,
+      currentDrinkId: 3,
+      showDeleteModal: true
+    }
+    expect(displayReducer(testState, action)).toEqual(testState2);
+    expect(displayReducer(testState2, action)).toEqual(testState);
+  })
 })
