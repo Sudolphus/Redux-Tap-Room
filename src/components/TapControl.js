@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as a from './../actions/index';
+import * as d from './DisplayTypes';
+import PropTypes from 'prop-types';
 import DrinkList from './DrinkList';
 import DrinkDetails from './DrinkDetails';
 import AddDrink from './AddDrink';
@@ -10,7 +14,6 @@ class TapControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      drinkList: [],
       currentPage: 'index',
       currentDrink: null
     }
@@ -24,65 +27,47 @@ class TapControl extends React.Component {
   }
 
   handleAddingDrink = (newDrink) => {
-    const newDrinkList = this.state.drinkList.concat(newDrink);
-    this.setState({ drinkList: newDrinkList });
-    this.handleLinks('index');
-  }
-
-  handleEditDrink = (editDrink) => {
-    const newDrinkList = this.state.drinkList.map(drink => {
-      if (drink.id === editDrink.id) {
-        return editDrink;
-      } else {
-        return drink;
-      }
-    });
-    this.setState({drinkList: newDrinkList});
+    const { dispatch } = this.props;
+    dispatch(a.addDrink(newDrink));
     this.handleLinks('index');
   }
 
   handleDeleteDrink = (deleteDrink) => {
-    const newDrinkList = this.state.drinkList.filter(drink => drink.id !== deleteDrink.id);
-    this.setState({drinkList: newDrinkList});
+    const { dispatch } = this.props;
+    dispatch(a.deleteDrink(deleteDrink.id));
     this.handleLinks('index');
   }
 
   handleChangeDrinksRemaining = (drink, amount) => {
-    const newDrink = {
-      name: drink.name,
-      brand: drink.brand,
-      price: drink.price,
-      alcoholContent: drink.alcoholContent,
-      quantity: Math.max(drink.quantity + amount, 0),
-      id: drink.id
-    }
-    this.handleEditDrink(newDrink);
+    const { dispatch } = this.props;
+    dispatch(a.changeQuantity(amount, drink.id));
+    this.handleLinks('index');
   }
 
   render() {
     let pageToDisplay;
     switch(this.state.currentPage) {
-      case 'index':
+      case d.INDEX:
         pageToDisplay = <DrinkList
         onLinkClick={this.handleLinks}
         onChangingQuantity = {this.handleChangeDrinksRemaining}
-        drinkList={this.state.drinkList} /> 
+        drinkList={this.props.drinkList} /> 
         break;
-      case 'details':
+      case d.DETAILS:
         pageToDisplay = <DrinkDetails
           onLinkClick = {this.handleLinks}
           onDelete = {this.handleDeleteDrink}
           drink = {this.state.currentDrink} />
         break;
-      case 'create':
+      case d.CREATE:
         pageToDisplay = <AddDrink
           onLinkClick = {this.handleLinks}
           onAddingDrink = {this.handleAddingDrink} />
         break;
-      case 'edit':
+      case d.EDIT:
         pageToDisplay = <EditDrink
           onLinkClick = {this.handleLinks}
-          onEditDrink = {this.handleEditDrink}
+          onEditDrink = {this.handleAddingDrink}
           drink = {this.state.currentDrink} />
         break;
       default:
@@ -100,4 +85,14 @@ class TapControl extends React.Component {
   }
 }
 
-export default TapControl;
+TapControl.propTypes = {
+  drinkList: PropTypes.array
+}
+
+const mapStateToProps = (state) => {
+  return ({
+    drinkList: Object.values(state['drinkList'])
+  })
+}
+
+export default connect(mapStateToProps)(TapControl);
