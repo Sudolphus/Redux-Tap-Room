@@ -25,6 +25,17 @@ describe('displayReducer', ()=>{
       currentPage: d.DETAILS,
       currentDrinkId: 1,
       showDeleteModal: false
+    });
+  });
+
+  it('should be able to redirect to create', ()=>{
+    const action = {
+      type: d.CREATE,
+    };
+    expect(displayReducer(undefined, action)).toEqual({
+      currentPage: d.CREATE,
+      currentDrinkId: null,
+      showDeleteModal: false
     })
   })
 })
