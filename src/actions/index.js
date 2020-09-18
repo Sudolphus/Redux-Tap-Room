@@ -11,4 +11,11 @@ export const addDrink = (drink) => {
     quantity,
     id
   });
-}
+};
+
+export const deleteDrink = (id) => {
+  return ({
+    type: c.DELETE_DRINK,
+    id
+  });
+};
