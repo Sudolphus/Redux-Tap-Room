@@ -7,8 +7,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/css/index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import * as d from './components/DisplayTypes';
 
-const store = createStore(reducer);
+const initialState = {
+  drinkList: {
+    'testDrink': {
+      name: 'testName',
+      brand: 'testBrand',
+      price: 1.00,
+      alcoholContent: 2.2,
+      quantity: 5,
+      id: 'testDrink'
+    }
+  },
+  display: {currentPage: d.INDEX, currentDrinkId: null, showDeleteModal: false}
+}
+const store = createStore(reducer, initialState);
 store.subscribe(()=>console.log(store.getState()));
 
 ReactDOM.render(

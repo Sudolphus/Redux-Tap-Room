@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as a from './../actions/index';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -10,11 +11,9 @@ import Image from 'react-bootstrap/Image';
 import stout from './img/stout.jpeg';
 
 function DrinkDetails(props) {
-  const { onLinkClick, onDelete, drink } = props;
+  const { onLinkClick, onDelete, drink, dispatch, showDeleteModal } = props;
   const { name, brand, price, alcoholContent, quantity } = drink;
-  const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const handleToggle = () => dispatch(a.toggleModal());
 
   return (
     <React.Fragment>
@@ -32,16 +31,16 @@ function DrinkDetails(props) {
       <ButtonGroup vertical size='lg'>
         <Button variant='secondary' type='button' block onClick={()=>onLinkClick('index')}>Back To Index</Button>
         <Button variant='warning' type='button' block onClick={()=>onLinkClick('edit', drink)}>Edit Drink</Button>
-        <Button variant='danger' type='button' block onClick={handleShow}>Delete Drink</Button>
+        <Button variant='danger' type='button' block onClick={handleToggle}>Delete Drink</Button>
       </ButtonGroup>
       
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={showDeleteModal} onHide={handleToggle}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete?</Modal.Title>
         </Modal.Header>
         <Modal.Body>Are you sure you want to delete {name}?</Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' type='button' onClick={handleClose}>&times;</Button>
+          <Button variant='secondary' type='button' onClick={handleToggle}>&times;</Button>
           <Button variant='primary' type='button' onClick={()=>onDelete(drink)}>&#10004;</Button>
         </Modal.Footer>
       </Modal>
