@@ -20,7 +20,7 @@ export default (state = {}, action) => {
       return newState;
     case c.CHANGE_QUANTITY:
       return Object.assign({}, state, {
-        [id]: { ...state[id], quantity: state[id].quantity + amount}
+        [id]: { ...state[id], quantity: Math.max(state[id].quantity + amount, 0)}
       });
     default:
       return state;
