@@ -1,4 +1,5 @@
 import * as c from './ActionTypes';
+import * as d from './../components/DisplayTypes';
 
 export const addDrink = (drink) => {
   const { name, brand, price, alcoholContent, quantity, id } = drink;
@@ -25,5 +26,11 @@ export const changeQuantity = (amount, id) => {
     type: c.CHANGE_QUANTITY,
     amount,
     id
+  })
+}
+
+export const viewIndex = () => {
+  return ({
+    type: d.INDEX
   })
 }

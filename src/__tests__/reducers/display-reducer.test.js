@@ -9,7 +9,7 @@ describe('displayReducer', ()=>{
   });
 
   it('should be able to redirect to index', ()=>{
-    expect(displayReducer(undefined, d.INDEX)).toEqual({
+    expect(displayReducer(undefined, { type: d.INDEX })).toEqual({
       currentPage: d.INDEX,
       currentDrinkId: null,
       showDeleteModal: false
