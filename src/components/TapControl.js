@@ -12,7 +12,7 @@ import Navigator from './Navigator';
 
 function TapControl(props) {
   const { dispatch } = props;
-  const { currentPage, currentDrinkId } = props.display;
+  const { currentPage } = props.display;
 
   const handleLinks = (page, drinkId = null) => {
     if (page === d.INDEX) {
@@ -49,14 +49,12 @@ function TapControl(props) {
       break;
     case d.CREATE:
       pageToDisplay = <AddDrink
-        onLinkClick = {handleLinks}
         onAddingDrink = {handleAddingDrink} />
       break;
     case d.EDIT:
       pageToDisplay = <EditDrink
-        onLinkClick = {handleLinks}
         onEditDrink = {handleAddingDrink}
-        drink = {props.drinkList[`${currentDrinkId}`]} />
+        drinkId = {props.display.currentDrinkId} />
       break;
     default:
       pageToDisplay = <ErrorPage

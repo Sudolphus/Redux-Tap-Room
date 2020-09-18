@@ -4,7 +4,7 @@ import v1 from 'uuid';
 import DrinkForm from './DrinkForm';
 
 function AddDrink(props) {
-  const {onLinkClick, onAddingDrink} = props;
+  const { onAddingDrink } = props;
 
   function handleAddingDrink(event) {
     onAddingDrink({
@@ -19,14 +19,12 @@ function AddDrink(props) {
 
   return (
     <DrinkForm
-      onLinkClick={onLinkClick}
       onSubmittingForm={handleAddingDrink}
       buttonText='Add Drink' />
   );
 }
 
 AddDrink.propTypes = {
-  onLinkClick: PropTypes.func.isRequired,
   onAddingDrink: PropTypes.func.isRequired
 }
 

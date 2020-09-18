@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DrinkForm from './DrinkForm';
 
 function EditDrink(props) {
-  const { onLinkClick, onEditDrink, drink } = props;
+  const { onEditDrink, drinkId } = props;
 
   function handleEditingDrink(event) {
     onEditDrink({
@@ -12,23 +12,20 @@ function EditDrink(props) {
       price: event.target.price.value,
       alcoholContent: event.target.content.value,
       quantity: parseInt(event.target.content.value),
-      id: drink.id
+      id: drinkId
     });
   }
 
   return (
     <DrinkForm
-      onLinkClick={onLinkClick}
       onSubmittingForm={handleEditingDrink}
-      buttonText="Edit Drink"
-      originalDrink={drink} />
+      buttonText="Edit Drink" />
   )
 }
 
 EditDrink.propTypes = {
-  onLinkClick: PropTypes.func.isRequired,
   onEditDrink: PropTypes.func.isRequired,
-  drink: PropTypes.object.isRequired
+  drinkId: PropTypes.string.isRequired
 }
 
 export default EditDrink;

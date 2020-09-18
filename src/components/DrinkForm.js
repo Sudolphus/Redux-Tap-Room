@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as a from './../actions/index';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
@@ -9,7 +11,7 @@ import Col from 'react-bootstrap/Col';
 import './css/DrinkForm.css';
 
 function DrinkForm(props) {
-  const { onLinkClick, onSubmittingForm, buttonText, originalDrink } = props;
+  const { onSubmittingForm, buttonText, originalDrink, dispatch } = props;
   let [defaultName, defaultBrand, defaultPrice, defaultContent, defaultQuantity] = [null, null, null, null, 124];
   
   function handleSubmittingForm(event) {
@@ -24,7 +26,7 @@ function DrinkForm(props) {
     defaultPrice = originalDrink.price;
     defaultContent = originalDrink.alcoholContent;
     defaultQuantity = originalDrink.quantity;
-    returnButton = <Button variant='info' type='button' size='lg' block onClick={()=>onLinkClick('details', originalDrink.id)}>Back To Drink</Button>
+    returnButton = <Button variant='info' type='button' size='lg' block onClick={()=>dispatch(a.viewDetails(originalDrink.id))}>Back To Drink</Button>
   }
 
   return (
@@ -73,17 +75,24 @@ function DrinkForm(props) {
       <ButtonGroup vertical size='lg'>
         <Button variant='success' type='submit' block>{buttonText}</Button>
         {returnButton}
-        <Button variant='secondary' type='button' block onClick={()=>onLinkClick('index')}>Back To Index</Button>
+        <Button variant='secondary' type='button' block onClick={()=>dispatch(a.viewIndex())}>Back To Index</Button>
       </ButtonGroup>
     </Form>
   )
 }
 
 DrinkForm.propTypes = {
-  onLinkClick: PropTypes.func.isRequired,
   onSubmittingForm: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired,
   originalDrink: PropTypes.object
 }
 
-export default DrinkForm;
+const mapStateToProps = (state) => {
+  const { currentDrinkId } = state.display;
+  const originalDrink = state['drinkList'][currentDrinkId];
+  return ({
+    originalDrink
+  })
+}
+
+export default connect(mapStateToProps)(DrinkForm);
