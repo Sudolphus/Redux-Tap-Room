@@ -16,9 +16,10 @@
 
 ---
 
-<p align="center"> An editable menu for a tap room. Features full Create-Read-Update-Destroy functionality.
+<p align="center"> An editable menu for a tap room. Features full Create-Read-Update-Destroy functionality. This is a sister project to <a href="https://github.com/Sudolphus/Tap-Room">Tap Room</a>, as it takes the code base from there, and adds Redux.
     <br> 
 </p>
+
 
 ## 📝 Table of Contents
 
@@ -27,6 +28,7 @@
 - [Deployment](#deployment)
 - [Usage](#usage)
 - [Components](#components-)
+- [Testing](#t)
 - [Built Using](#built_using)
 - [Author](#author)
 - [Acknowledgments](#acknowledgement)
@@ -67,6 +69,9 @@ This project should be entirely self contained, so once the file is built, openi
 [<img src="./ComponentDiagram.png" alt="component diagram">](ComponentDiagram.png)
 [<img src="./ComponentTree.png" alt="component tree">](ComponentTree.png)
 
+## Testing <a name = "testing'></a>
+
+Unit testing is available for this project, and are located in the `src/__tests__` directory. To run the tests, first insure that you have installed the packages with 'npm install', then run 'npm test'.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
