@@ -12,7 +12,7 @@ function DrinkListCard(props) {
   let priceColor;
 
   if (drink.quantity > 0) {
-    removeButton = <Button variant='secondary' type='button' size='sm' block onClick={()=>onChangingQuantity(drink, -1)}>Remove a Pint</Button>
+    removeButton = <Button variant='secondary' type='button' size='sm' block onClick={()=>onChangingQuantity(-1, drink.id)}>Remove a Pint</Button>
     if (drink.quantity < 10) {
       quantity = <Card.Text>Pints Remaining: {drink.quantity}<br /><span className="stock-warning">Almost Empty!</span></Card.Text>;
     } else {
@@ -40,8 +40,8 @@ function DrinkListCard(props) {
       </Card.Body>
       <Card.Footer>
         <ButtonGroup vertical size='sm'>
-          <Button variant='primary' type='button' block onClick={()=>onChangingQuantity(drink, 1)}>Add a Pint</Button>
-          <Button variant='success' type='button' block onClick={()=>onChangingQuantity(drink, 124)}>Add a Keg</Button>
+          <Button variant='primary' type='button' block onClick={()=>onChangingQuantity(1, drink.id)}>Add a Pint</Button>
+          <Button variant='success' type='button' block onClick={()=>onChangingQuantity(124, drink.id)}>Add a Keg</Button>
           {removeButton}
         </ButtonGroup>
       </Card.Footer>

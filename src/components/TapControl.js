@@ -40,7 +40,6 @@ function TapControl(props) {
   switch(currentPage) {
     case d.INDEX:
       pageToDisplay = <DrinkList
-        onLinkClick={handleLinks}
         onChangingQuantity = {handleChangeDrinksRemaining}
         drinkList={Object.values(props.drinkList)} /> 
       break;
