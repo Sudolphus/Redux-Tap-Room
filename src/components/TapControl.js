@@ -5,8 +5,6 @@ import * as d from './DisplayTypes';
 import PropTypes from 'prop-types';
 import DrinkList from './DrinkList';
 import DrinkDetails from './DrinkDetails';
-// import AddDrink from './AddDrink';
-// import EditDrink from './EditDrink';
 import DrinkForm from './DrinkForm';
 import ErrorPage from './ErrorPage';
 import Navigator from './Navigator';
@@ -14,18 +12,6 @@ import Navigator from './Navigator';
 function TapControl(props) {
   const { dispatch } = props;
   const { currentPage } = props.display;
-
-  const handleLinks = (page, drinkId = null) => {
-    if (page === d.INDEX) {
-      dispatch(a.viewIndex());
-    } else if (page === d.DETAILS) {
-      dispatch(a.viewDetails(drinkId));
-    } else if (page === d.CREATE) {
-      dispatch(a.create());
-    } else if (page === d.EDIT) {
-      dispatch(a.edit(drinkId));
-    }
-  }
 
   let pageToDisplay;
   if (currentPage === d.INDEX) {
@@ -37,13 +23,14 @@ function TapControl(props) {
   } else if (currentPage === d.EDIT) {
     pageToDisplay = <DrinkForm drinkId = {props.display.currentDrinkId} />
   } else {
-    pageToDisplay = <ErrorPage onLinkClick = {handleLinks} />
+    pageToDisplay = <ErrorPage onLinkClick = {()=>dispatch(a.viewIndex())} />
   }
 
   return (
     <React.Fragment>
       <Navigator
-        onLinkClick = {handleLinks} />
+        onIndexClick = {()=>dispatch(a.viewIndex())}
+        onCreateClick = {()=>dispatch(a.create())} />
       {pageToDisplay}
     </React.Fragment>
   )
