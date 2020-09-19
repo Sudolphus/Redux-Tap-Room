@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as a from './../actions/index';
+import v1 from 'uuid';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
@@ -11,15 +12,36 @@ import Col from 'react-bootstrap/Col';
 import './css/DrinkForm.css';
 
 function DrinkForm(props) {
-  const { onSubmittingForm, buttonText, originalDrink, dispatch } = props;
+  const { originalDrink, dispatch } = props;
   let [defaultName, defaultBrand, defaultPrice, defaultContent, defaultQuantity] = [null, null, null, null, 124];
   
   function handleSubmittingForm(event) {
     event.preventDefault();
-    onSubmittingForm(event);
+    const name = event.target.name.value;
+    const brand = event.target.brand.value;
+    const price = event.target.price.value;
+    const alcoholContent = event.target.content.value;
+    const quantity = parseInt(event.target.quantity.value);
+    let id;
+    if (originalDrink) {
+      id = originalDrink.id;
+    } else {
+      id = v1();
+    }
+    const newDrink = {
+      name,
+      brand,
+      price,
+      alcoholContent,
+      quantity,
+      id
+    };
+    dispatch(a.addDrink(newDrink));
+    dispatch(a.viewIndex());
   }
 
   let returnButton;
+  let buttonText;
   if (originalDrink) {
     defaultName = originalDrink.name;
     defaultBrand = originalDrink.brand;
@@ -27,6 +49,9 @@ function DrinkForm(props) {
     defaultContent = originalDrink.alcoholContent;
     defaultQuantity = originalDrink.quantity;
     returnButton = <Button variant='info' type='button' size='lg' block onClick={()=>dispatch(a.viewDetails(originalDrink.id))}>Back To Drink</Button>
+    buttonText = "Edit Drink";
+  } else {
+    buttonText = "Add Drink";
   }
 
   return (
@@ -82,8 +107,6 @@ function DrinkForm(props) {
 }
 
 DrinkForm.propTypes = {
-  onSubmittingForm: PropTypes.func.isRequired,
-  buttonText: PropTypes.string.isRequired,
   originalDrink: PropTypes.object
 }
 

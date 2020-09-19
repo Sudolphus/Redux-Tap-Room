@@ -5,8 +5,9 @@ import * as d from './DisplayTypes';
 import PropTypes from 'prop-types';
 import DrinkList from './DrinkList';
 import DrinkDetails from './DrinkDetails';
-import AddDrink from './AddDrink';
-import EditDrink from './EditDrink';
+// import AddDrink from './AddDrink';
+// import EditDrink from './EditDrink';
+import DrinkForm from './DrinkForm';
 import ErrorPage from './ErrorPage';
 import Navigator from './Navigator';
 
@@ -26,20 +27,15 @@ function TapControl(props) {
     }
   }
 
-  const handleAddingDrink = (newDrink) => {
-    dispatch(a.addDrink(newDrink));
-    handleLinks(d.INDEX);
-  }
-
   let pageToDisplay;
   if (currentPage === d.INDEX) {
     pageToDisplay = <DrinkList />
   } else if (currentPage === d.DETAILS) {
     pageToDisplay = <DrinkDetails />
   } else if (currentPage === d.CREATE) {
-    pageToDisplay = <AddDrink onAddingDrink = {handleAddingDrink} />
+    pageToDisplay = <DrinkForm />
   } else if (currentPage === d.EDIT) {
-    pageToDisplay = <EditDrink onEditDrink = {handleAddingDrink} drinkId = {props.display.currentDrinkId} />
+    pageToDisplay = <DrinkForm drinkId = {props.display.currentDrinkId} />
   } else {
     pageToDisplay = <ErrorPage onLinkClick = {handleLinks} />
   }
