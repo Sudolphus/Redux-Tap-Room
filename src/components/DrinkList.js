@@ -29,4 +29,10 @@ DrinkList.propTypes = {
   drinkList: PropTypes.arrayOf(Object).isRequired
 }
 
-export default connect()(DrinkList);
+const mapStateToProps = (state) => {
+  return ({
+    drinkList: Object.values(state['drinkList'])
+  })
+}
+
+export default connect(mapStateToProps)(DrinkList);

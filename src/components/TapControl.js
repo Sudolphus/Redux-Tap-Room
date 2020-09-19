@@ -31,17 +31,10 @@ function TapControl(props) {
     handleLinks(d.INDEX);
   }
 
-  const handleChangeDrinksRemaining = (drink, amount) => {
-    dispatch(a.changeQuantity(amount, drink.id));
-    handleLinks(d.INDEX);
-  }
-
   let pageToDisplay;
   switch(currentPage) {
     case d.INDEX:
-      pageToDisplay = <DrinkList
-        onChangingQuantity = {handleChangeDrinksRemaining}
-        drinkList={Object.values(props.drinkList)} /> 
+      pageToDisplay = <DrinkList />
       break;
     case d.DETAILS:
       pageToDisplay = <DrinkDetails />
@@ -71,13 +64,11 @@ function TapControl(props) {
 
 
 TapControl.propTypes = {
-  drinkList: PropTypes.object,
   display: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
   return ({
-    drinkList: state['drinkList'],
     display: state['display']
   })
 }
