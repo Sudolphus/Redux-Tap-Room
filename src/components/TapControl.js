@@ -32,25 +32,16 @@ function TapControl(props) {
   }
 
   let pageToDisplay;
-  switch(currentPage) {
-    case d.INDEX:
-      pageToDisplay = <DrinkList />
-      break;
-    case d.DETAILS:
-      pageToDisplay = <DrinkDetails />
-      break;
-    case d.CREATE:
-      pageToDisplay = <AddDrink
-        onAddingDrink = {handleAddingDrink} />
-      break;
-    case d.EDIT:
-      pageToDisplay = <EditDrink
-        onEditDrink = {handleAddingDrink}
-        drinkId = {props.display.currentDrinkId} />
-      break;
-    default:
-      pageToDisplay = <ErrorPage
-        onLinkClick = {handleLinks} />;
+  if (currentPage === d.INDEX) {
+    pageToDisplay = <DrinkList />
+  } else if (currentPage === d.DETAILS) {
+    pageToDisplay = <DrinkDetails />
+  } else if (currentPage === d.CREATE) {
+    pageToDisplay = <AddDrink onAddingDrink = {handleAddingDrink} />
+  } else if (currentPage === d.EDIT) {
+    pageToDisplay = <EditDrink onEditDrink = {handleAddingDrink} drinkId = {props.display.currentDrinkId} />
+  } else {
+    pageToDisplay = <ErrorPage onLinkClick = {handleLinks} />
   }
 
   return (
