@@ -18,10 +18,8 @@ function TapControl(props) {
     pageToDisplay = <DrinkList />
   } else if (currentPage === d.DETAILS) {
     pageToDisplay = <DrinkDetails />
-  } else if (currentPage === d.CREATE) {
+  } else if (currentPage === d.CREATE || currentPage === d.EDIT) {
     pageToDisplay = <DrinkForm />
-  } else if (currentPage === d.EDIT) {
-    pageToDisplay = <DrinkForm drinkId = {props.display.currentDrinkId} />
   } else {
     pageToDisplay = <ErrorPage onLinkClick = {()=>dispatch(a.viewIndex())} />
   }
