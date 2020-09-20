@@ -8,14 +8,13 @@ import Button from 'react-bootstrap/Button';
 
 function DrinkList(props) {
   const { dispatch, drinkList } = props;
-  const handleChangingQuantity = (amount, id) => dispatch(a.changeQuantity(amount, id));
   return (
     <React.Fragment>
       <CardColumns>
         {drinkList.map(drink => 
           <DrinkListCard
             onLinkClick={()=>dispatch(a.viewDetails(drink.id))}
-            onChangingQuantity={handleChangingQuantity}
+            onChangingQuantity={(amount, id) => dispatch(a.changeQuantity(amount, id))}
             drink={drink}
             key={drink.id} />)}
       </CardColumns>
@@ -25,7 +24,6 @@ function DrinkList(props) {
 }
 
 DrinkList.propTypes = {
-  onChangingQuantity: PropTypes.func.isRequired,
   drinkList: PropTypes.arrayOf(Object).isRequired
 }
 

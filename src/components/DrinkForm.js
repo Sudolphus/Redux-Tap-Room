@@ -22,12 +22,7 @@ function DrinkForm(props) {
     const price = event.target.price.value;
     const alcoholContent = event.target.content.value;
     const quantity = parseInt(event.target.quantity.value);
-    let id;
-    if (originalDrink) {
-      id = originalDrink.id;
-    } else {
-      id = v1();
-    }
+    const id = (originalDrink) ? originalDrink.id : v1();
     const newDrink = {
       name,
       brand,
