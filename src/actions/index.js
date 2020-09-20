@@ -49,13 +49,6 @@ export const create = (currentDrinkId = null) => {
   })
 }
 
-// export const edit = (currentDrinkId) => {
-//   return ({
-//     type: d.EDIT,
-//     currentDrinkId
-//   })
-// }
-
 export const toggleModal = () => {
   return ({
     type: d.TOGGLE_MODAL
