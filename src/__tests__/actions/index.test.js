@@ -55,13 +55,21 @@ describe('actions', ()=>{
 
   it('should be able to create a create action', ()=>{
     expect(a.create()).toEqual({
-      type: d.CREATE
+      type: d.CREATE,
+      currentDrinkId: null
     });
   });
 
-  it('should be able to create an edit action', ()=>{
-    expect(a.edit(3)).toEqual({
-      type: d.EDIT,
+  // it('should be able to create an edit action', ()=>{
+  //   expect(a.edit(3)).toEqual({
+  //     type: d.EDIT,
+  //     currentDrinkId: 3
+  //   });
+  // });
+
+  it('should be able to create an edit action through the create action', ()=>{
+    expect(a.create(3)).toEqual({
+      type: d.CREATE,
       currentDrinkId: 3
     });
   });

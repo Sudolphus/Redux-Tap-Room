@@ -42,18 +42,19 @@ export const viewDetails = (currentDrinkId) => {
   })
 }
 
-export const create = () => {
+export const create = (currentDrinkId = null) => {
   return ({
-    type: d.CREATE
-  })
-}
-
-export const edit = (currentDrinkId) => {
-  return ({
-    type: d.EDIT,
+    type: d.CREATE,
     currentDrinkId
   })
 }
+
+// export const edit = (currentDrinkId) => {
+//   return ({
+//     type: d.EDIT,
+//     currentDrinkId
+//   })
+// }
 
 export const toggleModal = () => {
   return ({

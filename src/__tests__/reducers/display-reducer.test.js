@@ -31,6 +31,7 @@ describe('displayReducer', ()=>{
   it('should be able to redirect to create', ()=>{
     const action = {
       type: d.CREATE,
+      currentDrinkId: null
     };
     expect(displayReducer(undefined, action)).toEqual({
       currentPage: d.CREATE,

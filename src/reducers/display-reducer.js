@@ -16,10 +16,9 @@ export default (state = {currentPage: d.INDEX, currentDrinkId: null, showDeleteM
         showDeleteModal: false
       }
     case d.CREATE:
-      const createId = (currentDrinkId) ? currentDrinkId : null;
       return {
         currentPage: d.CREATE,
-        currentDrinkId: createId,
+        currentDrinkId,
         showDeleteModal: false
       }
     case d.TOGGLE_MODAL:
