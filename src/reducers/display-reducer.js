@@ -16,15 +16,15 @@ export default (state = {currentPage: d.INDEX, currentDrinkId: null, showDeleteM
         showDeleteModal: false
       }
     case d.CREATE:
+      let createId;
+      if (currentDrinkId) {
+        createId = currentDrinkId;
+      } else {
+        createId = null;
+      }
       return {
         currentPage: d.CREATE,
-        currentDrinkId: null,
-        showDeleteModal: false
-      }
-    case d.EDIT:
-      return {
-        currentPage: d.EDIT,
-        currentDrinkId,
+        currentDrinkId: createId,
         showDeleteModal: false
       }
     case d.TOGGLE_MODAL:

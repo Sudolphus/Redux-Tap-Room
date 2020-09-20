@@ -39,17 +39,17 @@ describe('displayReducer', ()=>{
     });
   });
 
-  it('should be able to redirect to edit for a product', ()=>{
-    const action = {
-      type: d.EDIT,
-      currentDrinkId: 3
-    };
-    expect(displayReducer(undefined, action)).toEqual({
-      currentPage: d.EDIT,
-      currentDrinkId: 3,
-      showDeleteModal: false
-    })
-  })
+  // it('should be able to redirect to edit for a product', ()=>{
+  //   const action = {
+  //     type: d.EDIT,
+  //     currentDrinkId: 3
+  //   };
+  //   expect(displayReducer(undefined, action)).toEqual({
+  //     currentPage: d.EDIT,
+  //     currentDrinkId: 3,
+  //     showDeleteModal: false
+  //   })
+  // })
 
   it('should be able to toggle the delete modal', ()=>{
     const action = {
@@ -68,4 +68,16 @@ describe('displayReducer', ()=>{
     expect(displayReducer(testState, action)).toEqual(testState2);
     expect(displayReducer(testState2, action)).toEqual(testState);
   })
+
+  it('should be able to redirect to edit for a product without using the edit method', ()=>{
+    const action = {
+      type: d.CREATE,
+      currentDrinkId: 3
+    };
+    expect(displayReducer(undefined, action)).toEqual({
+      currentPage: d.CREATE,
+      currentDrinkId: 3,
+      showDeleteModal: false
+    });
+  });
 })
